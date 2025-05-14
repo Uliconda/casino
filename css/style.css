@@ -2154,3 +2154,132 @@ body {
     gap: 0.5rem;
   }
 }
+
+/* Estilos generales para páginas de juego */
+.game-page {
+  background: radial-gradient(circle at center, #1a1a2e 0%, #121212 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.game-header .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game-header .logo-icon {
+  font-size: 2.5rem;
+  animation: pulse 2s infinite;
+}
+
+.game-header .logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffcc00;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
+
+.game-header .logo-text span {
+  color: #ffffff;
+}
+
+.game-header .user-panel {
+  background: rgba(255, 204, 0, 0.9);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+}
+
+.game-header .welcome-msg {
+  color: #121212;
+  font-weight: 600;
+  margin: 0;
+}
+
+.game-header .username {
+  font-weight: 700;
+  color: #121212;
+}
+
+.game-header .btn-logout {
+  background: #121212;
+  color: #ffcc00;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.game-header .btn-logout:hover {
+  background: #000000;
+  transform: translateY(-2px);
+}
+
+.game-main {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
+}
+
+.game-footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: #121212;
+  position: relative;
+  z-index: 1;
+}
+
+.game-footer p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Animaciones */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .game-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .game-header .logo-text {
+    font-size: 1.8rem;
+  }
+  
+  .game-header .user-panel {
+    width: 100%;
+    justify-content: center;
+  }
+}
