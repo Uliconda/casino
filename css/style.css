@@ -2283,3 +2283,54 @@ body {
     justify-content: center;
   }
 }
+
+/* Estilos para la página de detalles del juego */
+.game-detail-page {
+  background: radial-gradient(circle at center, #1a1a2e 0%, #121212 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.recommendation-item {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #ffcc00;
+  transition: all 0.3s ease;
+}
+
+.recommendation-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.recommendation-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.btn-recommendation {
+  background: rgba(255, 204, 0, 0.1);
+  color: #ffcc00;
+  border: 1px solid #ffcc00;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-recommendation:hover {
+  background: #ffcc00;
+  color: #121212;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}

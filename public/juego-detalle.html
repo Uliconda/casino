@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles del Juego - Casino Royale</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .game-detail-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(30, 30, 46, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+    }
+    
+    .game-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .game-icon {
+      font-size: 4rem;
+      flex-shrink: 0;
+    }
+    
+    .game-title {
+      color: #ffcc00;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 0.5rem;
+    }
+    
+    .game-category {
+      color: #aaaaaa;
+      font-style: italic;
+    }
+    
+    .game-section {
+      margin-bottom: 2rem;
+    }
+    
+    .section-title {
+      color: #ffcc00;
+      border-bottom: 2px solid #ffcc00;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .how-to-play ol {
+      padding-left: 1.5rem;
+    }
+    
+    .how-to-play li {
+      margin-bottom: 1rem;
+    }
+    
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .rule-card {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border-left: 4px solid #ffcc00;
+    }
+    
+    .rule-title {
+      color: #ffcc00;
+      margin-bottom: 0.5rem;
+    }
+    
+    .game-simulation {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    
+    .play-btn {
+      padding: 1rem 2rem;
+      background: #ffcc00;
+      color: #121212;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    
+    .play-btn:hover {
+      background: #e6b800;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .game-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .game-icon {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="game-detail-page">
+  <!-- Fondo animado -->
+  <div class="background-animation">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <header class="main-header">
+    <div class="logo-container">
+      <span class="logo-icon">♠️</span>
+      <h1 class="logo-text">CASINO <span>ROYALE</span></h1>
+      <span class="logo-icon">♥️</span>
+    </div>
+    <div class="user-panel">
+      <p class="welcome-msg">Bienvenido, <span id="game-username" class="username">Invitado</span></p>
+      <button onclick="window.location.href='../index.html'" class="btn-logout">
+        <span class="btn-icon">🏠</span> Volver
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="game-detail-container">
+      <div class="game-header">
+        <div class="game-icon" id="detail-icon">🎰</div>
+        <div>
+          <h1 class="game-title" id="detail-title">Ruleta VIP</h1>
+          <p class="game-category" id="detail-category">Categoría: Azar</p>
+        </div>
+      </div>
+      
+      <div class="game-section">
+        <h2 class="section-title">Descripción</h2>
+        <p id="detail-description">La ruleta es uno de los juegos de casino más icónicos. En nuestra versión VIP, disfrutarás de una experiencia premium con mayores probabilidades de ganar y premios exclusivos.</p>
+      </div>
+      
+      <div class="game-section how-to-play">
+        <h2 class="section-title">Cómo jugar</h2>
+        <ol id="detail-instructions">
+          <li>Selecciona tu ficha y el valor de tu apuesta</li>
+          <li>Coloca tus fichas en los números o combinaciones que prefieras</li>
+          <li>Presiona el botón "Girar" para iniciar la ronda</li>
+          <li>La bola se detendrá en un número aleatorio</li>
+          <li>Si has acertado, recibirás tu premio según las probabilidades de tu apuesta</li>
+        </ol>
+      </div>
+      
+      <div class="game-section">
+        <h2 class="section-title">Reglas y Pagos</h2>
+        <div class="rules-grid" id="detail-rules">
+          <div class="rule-card">
+            <h3 class="rule-title">Apuesta a número simple</h3>
+            <p>Paga 35 a 1. Apuesta a un número específico del 0 al 36.</p>
+          </div>
+          <div class="rule-card">
+            <h3 class="rule-title">Apuesta a color</h3>
+            <p>Paga 1 a 1. Apuesta al rojo o negro (excluyendo el 0).</p>
+          </div>
+          <div class="rule-card">
+            <h3 class="rule-title">Apuesta a docena</h3>
+            <p>Paga 2 a 1. Apuesta a la primera (1-12), segunda (13-24) o tercera (25-36) docena.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="game-section">
+        <h2 class="section-title">Recomendación IA</h2>
+        <p id="detail-tip">Nuestro sistema de IA recomienda comenzar con apuestas a color o par/impar para familiarizarte con el juego, y luego probar estrategias de progresión con apuestas a docenas una vez que comprendas el flujo del juego.</p>
+      </div>
+      
+      <div class="game-simulation">
+        <h3>¿Listo para jugar?</h3>
+        <p>Practica lo que has aprendido en nuestra versión demo o juega por créditos reales.</p>
+        <button class="play-btn" id="play-btn">
+          <span class="btn-icon">🎮</span> Jugar ahora
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <p>© 2023 Casino Royale. Todos los derechos reservados.</p>
+    <p class="disclaimer">+18 | Juego responsable | Certificado RNG</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mostrar nombre de usuario si está logueado
+      if(localStorage.getItem('usuario')) {
+        document.getElementById('game-username').textContent = localStorage.getItem('usuario');
+      }
+      
+      // Obtener parámetros de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const gameId = urlParams.get('id');
+      
+      // Base de datos de juegos (simulada)
+      const gamesDatabase = {
+        'ruleta-vip': {
+          title: 'Ruleta VIP',
+          icon: '🎡',
+          category: 'Azar',
+          description: 'La ruleta es uno de los juegos de casino más icónicos. En nuestra versión VIP, disfrutarás de una experiencia premium con mayores probabilidades de ganar y premios exclusivos.',
+          instructions: [
+            'Selecciona tu ficha y el valor de tu apuesta',
+            'Coloca tus fichas en los números o combinaciones que prefieras',
+            'Presiona el botón "Girar" para iniciar la ronda',
+            'La bola se detendrá en un número aleatorio',
+            'Si has acertado, recibirás tu premio según las probabilidades de tu apuesta'
+          ],
+          rules: [
+            {
+              title: 'Apuesta a número simple',
+              content: 'Paga 35 a 1. Apuesta a un número específico del 0 al 36.'
+            },
+            {
+              title: 'Apuesta a color',
+              content: 'Paga 1 a 1. Apuesta al rojo o negro (excluyendo el 0).'
+            },
+            {
+              title: 'Apuesta a docena',
+              content: 'Paga 2 a 1. Apuesta a la primera (1-12), segunda (13-24) o tercera (25-36) docena.'
+            }
+          ],
+          tip: 'Nuestro sistema de IA recomienda comenzar con apuestas a color o par/impar para familiarizarte con el juego, y luego probar estrategias de progresión con apuestas a docenas una vez que comprendas el flujo del juego.',
+          playLink: 'ruleta.html'
+        },
+        'blackjack-pro': {
+          title: 'Blackjack Pro',
+          icon: '♠️',
+          category: 'Estrategia',
+          description: 'El blackjack es el juego de cartas más popular en los casinos. Nuestra versión Pro incluye reglas favorables al jugador y mesas de alto límite.',
+          instructions: [
+            'El objetivo es sumar 21 puntos o acercarse lo más posible sin pasarse',
+            'El crupier reparte 2 cartas a cada jugador y 2 para sí mismo (una visible)',
+            'Decide si pedir otra carta (Hit) o plantarte (Stand)',
+            'Si te pasas de 21, pierdes automáticamente',
+            'El crupier juega según reglas establecidas (generalmente pide hasta 17)'
+          ],
+          rules: [
+            {
+              title: 'Blackjack natural',
+              content: 'Paga 3 a 2. Un As con una carta de valor 10 (10, J, Q, K).'
+            },
+            {
+              title: 'Seguro',
+              content: 'Si el crupier muestra un As, puedes apostar a que tiene blackjack.'
+            },
+            {
+              title: 'Doblar',
+              content: 'Puedes doblar tu apuesta después de recibir tus primeras 2 cartas.'
+            }
+          ],
+          tip: 'Nuestra IA recomienda seguir la estrategia básica de blackjack: pedir carta con 11 o menos, plantarte con 17 o más, y doblar con 11 contra un crupier débil (2-10).',
+          playLink: 'blackjack.html'
+        },
+        'poker-texas': {
+          title: 'Póker Texas',
+          icon: '🃏',
+          category: 'Cartas',
+          description: 'Texas Hold\'em es la variante de póker más popular. Participa en torneos semanales con premios en efectivo.',
+          instructions: [
+            'Cada jugador recibe 2 cartas ocultas',
+            'Se reparten 5 cartas comunitarias en el centro de la mesa',
+            'Usa cualquier combinación de tus cartas y las comunitarias para formar la mejor mano',
+            'Las rondas de apuestas ocurren después de repartir las cartas iniciales, el flop (3 cartas), el turn (1 carta) y el river (1 carta)',
+            'El jugador con la mejor mano gana el pozo'
+          ],
+          rules: [
+            {
+              title: 'Manos ganadoras',
+              content: 'Escalera real > Escalera de color > Póker > Full > Color > Escalera > Trío > Doble pareja > Pareja > Carta alta'
+            },
+            {
+              title: 'Ciegas',
+              content: 'Los jugadores a la izquierda del repartidor colocan las ciegas pequeña y grande para iniciar el pozo.'
+            },
+            {
+              title: 'All-in',
+              content: 'Puedes apostar todas tus fichas en cualquier momento.'
+            }
+          ],
+          tip: 'Nuestro sistema de IA analiza tus patrones de juego y recomienda jugar agresivamente con manos fuertes, y ser conservador con manos marginales, especialmente en las primeras rondas.',
+          playLink: 'poker.html'
+        }
+      };
+      
+      // Cargar datos del juego según el parámetro ID
+      const gameData = gamesDatabase[gameId] || gamesDatabase['ruleta-vip'];
+      
+      // Mostrar datos en la página
+      document.getElementById('detail-icon').textContent = gameData.icon;
+      document.getElementById('detail-title').textContent = gameData.title;
+      document.getElementById('detail-category').textContent = `Categoría: ${gameData.category}`;
+      document.getElementById('detail-description').textContent = gameData.description;
+      document.getElementById('detail-tip').textContent = gameData.tip;
+      
+      // Mostrar instrucciones
+      const instructionsList = document.getElementById('detail-instructions');
+      instructionsList.innerHTML = '';
+      gameData.instructions.forEach(instruction => {
+        const li = document.createElement('li');
+        li.textContent = instruction;
+        instructionsList.appendChild(li);
+      });
+      
+      // Mostrar reglas
+      const rulesGrid = document.getElementById('detail-rules');
+      rulesGrid.innerHTML = '';
+      gameData.rules.forEach(rule => {
+        const ruleCard = document.createElement('div');
+        ruleCard.className = 'rule-card';
+        ruleCard.innerHTML = `
+          <h3 class="rule-title">${rule.title}</h3>
+          <p>${rule.content}</p>
+        `;
+        rulesGrid.appendChild(ruleCard);
+      });
+      
+      // Configurar botón de jugar
+      const playBtn = document.getElementById('play-btn');
+      if(gameData.playLink) {
+        playBtn.addEventListener('click', () => {
+          window.location.href = gameData.playLink;
+        });
+      } else {
+        playBtn.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
