@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Regístrate en Casino Royale y disfruta de los mejores juegos online">
+  <title>Registro - Casino Royale</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body class="register-page">
+  <!-- Fondo animado -->
+  <div class="background-animation">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <header class="register-header">
+    <div class="logo-container">
+      <span class="logo-icon">♠️</span>
+      <h1 class="logo-text">CASINO <span>ROYALE</span></h1>
+      <span class="logo-icon">♥️</span>
+    </div>
+    <p class="tagline">Tu destino para juegos premium</p>
+  </header>
+
+  <main class="register-main">
+    <div class="register-card animate__animated animate__fadeInUp">
+      <h2 class="register-title">Crear Cuenta</h2>
+      <p class="register-subtitle">Únete a la experiencia más exclusiva</p>
+      
+      <form id="registro-form" method="POST" action="../server/register.php" class="register-form">
+        <div class="form-group">
+          <label for="nombre" class="form-label">
+            <span class="label-icon">👤</span> Nombre completo
+          </label>
+          <input type="text" id="nombre" name="nombre" required class="form-input" placeholder="Ej: James Bond">
+          <div class="input-decoration"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="form-label">
+            <span class="label-icon">✉️</span> Correo electrónico
+          </label>
+          <input type="email" id="email" name="email" required class="form-input" placeholder="bond@mi6.com">
+          <div class="input-decoration"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password" class="form-label">
+            <span class="label-icon">🔒</span> Contraseña
+          </label>
+          <input type="password" id="password" name="password" required class="form-input" placeholder="Mínimo 8 caracteres">
+          <div class="password-strength-container">
+            <div class="password-strength"></div>
+            <span class="strength-text">Seguridad: <span id="strength-level">Débil</span></span>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn-register">
+          <span class="btn-icon">🎰</span> Unirse ahora
+        </button>
+        
+        <div class="form-footer">
+          <p>¿Ya tienes cuenta? <a href="login.html" class="form-link">Accede aquí</a></p>
+          <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-text">o</span>
+            <span class="divider-line"></span>
+          </div>
+          <button type="button" onclick="window.location.href='juegos.html'" class="btn-guest">
+            <span class="btn-icon">🎮</span> Continuar como invitado
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="register-footer">
+    <div class="security-badges">
+      <span class="badge">🔐 256-bit SSL</span>
+      <span class="badge">🛡️ Juego seguro</span>
+      <span class="badge">👁️‍🗨️ +18</span>
+    </div>
+    <p class="copyright">© 2023 Casino Royale. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Efecto de fuerza de contraseña
+      const passwordInput = document.getElementById('password');
+      const strengthBar = document.querySelector('.password-strength');
+      const strengthText = document.getElementById('strength-level');
+      
+      passwordInput.addEventListener('input', function() {
+        const strength = calculateStrength(this.value);
+        strengthBar.style.width = strength.percentage + '%';
+        strengthBar.style.backgroundColor = strength.color;
+        strengthText.textContent = strength.text;
+        strengthText.style.color = strength.color;
+      });
+      
+      function calculateStrength(password) {
+        const length = password.length;
+        let strength = 0;
+        
+        // Requisitos de complejidad
+        if (length >= 8) strength += 1;
+        if (length >= 12) strength += 1;
+        if (/[A-Z]/.test(password)) strength += 1;
+        if (/[0-9]/.test(password)) strength += 1;
+        if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+        
+        if (length < 8) {
+          return {
+            percentage: (length / 8) * 100,
+            color: '#ff4444',
+            text: 'Muy débil'
+          };
+        }
+        
+        switch(strength) {
+          case 1: return { percentage: 25, color: '#ff4444', text: 'Débil' };
+          case 2: return { percentage: 50, color: '#ffbb33', text: 'Moderada' };
+          case 3: return { percentage: 75, color: '#ffbb33', text: 'Buena' };
+          case 4: return { percentage: 90, color: '#00C851', text: 'Fuerte' };
+          case 5: return { percentage: 100, color: '#00C851', text: 'Excelente' };
+          default: return { percentage: 0, color: '#ff4444', text: '' };
+        }
+      }
+      
+      // Animación de hover para botones
+      const buttons = document.querySelectorAll('.btn-register, .btn-guest');
+      buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-3px)';
+        });
+        button.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+      
+      // Manejo del formulario
+      document.getElementById('registro-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const submitBtn = this.querySelector('button[type="submit"]');
+        
+        submitBtn.innerHTML = '<span class="btn-icon">⏳</span> Registrando...';
+        submitBtn.disabled = true;
+        
+        fetch(this.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(async response => {
+          const contentType = response.headers.get('content-type');
+          if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            throw new Error(text || 'Respuesta no válida del servidor');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            alert('¡Registro exitoso! Bienvenido a Casino Royale');
+            window.location.href = data.redirect || '../public/index.html';
+          } else {
+            throw new Error(data.error || 'Error en el registro');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert(error.message.replace(/<[^>]*>?/gm, '') || 'Error al procesar el registro');
+        })
+        .finally(() => {
+          submitBtn.innerHTML = '<span class="btn-icon">🎰</span> Unirse ahora';
+          submitBtn.disabled = false;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

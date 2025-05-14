@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bienvenido a Casino Royale - La mejor experiencia de juegos online con premios extraordinarios">
+  <title>Casino Royale - Bienvenido</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body class="welcome-page">
+  <!-- Fondo animado -->
+  <div class="background-animation">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <header class="welcome-header">
+    <div class="logo-container">
+      <span class="logo-icon">♠️</span>
+      <h1 class="logo-text">CASINO <span>ROYALE</span></h1>
+      <span class="logo-icon">♥️</span>
+    </div>
+    <p class="tagline">Donde los sueños se convierten en realidad</p>
+  </header>
+
+  <main class="welcome-main">
+    <div class="welcome-card animate__animated animate__fadeInUp">
+      <h2 class="welcome-title">¡Bienvenido!</h2>
+      <p class="welcome-message">Experimenta la emoción de nuestros juegos exclusivos y la oportunidad de ganar premios extraordinarios.</p>
+      
+      <div class="highlights">
+        <div class="highlight-item">
+          <span class="highlight-icon">💰</span>
+          <p>Grandes premios</p>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">🎮</span>
+          <p>Juegos exclusivos</p>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">🛡️</span>
+          <p>Juego seguro</p>
+        </div>
+      </div>
+      
+      <div class="welcome-buttons">
+        <button onclick="window.location.href='login.html'" class="btn-welcome btn-login">
+          <span class="btn-icon">🔑</span> Iniciar sesión
+        </button>
+        <button onclick="window.location.href='registro.html'" class="btn-welcome btn-register">
+          <span class="btn-icon">✍️</span> Registrarse
+        </button>
+        <button onclick="window.location.href='juegos.html'" class="btn-welcome btn-play">
+          <span class="btn-icon">🎮</span> Jugar como invitado
+        </button>
+      </div>
+      
+      <div class="disclaimer">
+        <p>+18 | Juego responsable | <a href="#" class="terms-link">Términos y condiciones</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="welcome-footer">
+    <p>© 2023 Casino Royale. Todos los derechos reservados.</p>
+    <div class="payment-methods">
+      <span class="payment-icon">💳</span>
+      <span class="payment-icon">📱</span>
+      <span class="payment-icon">🏦</span>
+    </div>
+  </footer>
+
+  <script>
+    // Efecto de escritura para el título
+    document.addEventListener('DOMContentLoaded', function() {
+      const title = document.querySelector('.welcome-title');
+      if (title) {
+        title.style.visibility = 'hidden';
+        setTimeout(() => {
+          title.style.visibility = 'visible';
+        }, 500);
+      }
+      
+      // Efecto hover para los botones
+      const buttons = document.querySelectorAll('.btn-welcome');
+      buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-5px)';
+        });
+        button.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inicia sesión en Casino Royale - Accede a los mejores juegos de casino online">
+  <title>Iniciar Sesión - Casino Royale</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body class="login-page">
+  <!-- Fondo animado -->
+  <div class="background-animation">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <header class="login-header">
+    <div class="logo-container">
+      <span class="logo-icon">♠️</span>
+      <h1 class="logo-text">CASINO <span>ROYALE</span></h1>
+      <span class="logo-icon">♥️</span>
+    </div>
+    <p class="tagline">Donde los ganadores juegan</p>
+  </header>
+
+  <main class="login-main">
+    <div class="login-card animate__animated animate__fadeInUp">
+      <h2 class="login-title">
+        <span class="title-icon">🔐</span> Iniciar Sesión
+      </h2>
+      <p class="login-subtitle">Accede a tu cuenta para disfrutar de la experiencia premium</p>
+      
+      <form id="login-form" method="POST" action="../server/login.php" class="login-form">
+        <div class="form-group">
+          <label for="email" class="form-label">
+            <span class="label-icon">✉️</span> Correo electrónico
+          </label>
+          <input type="email" name="email" id="uname" class="form-input" required placeholder="tucorreo@ejemplo.com">
+          <div class="input-decoration"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password" class="form-label">
+            <span class="label-icon">🔒</span> Contraseña
+          </label>
+          <input type="password" name="password" id="pass" class="form-input" required placeholder="Introduce tu contraseña">
+          <div class="input-decoration"></div>
+          <div class="forgot-password">
+            <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+          </div>
+        </div>
+        
+        <button type="submit" id="login-btn" class="btn-login">
+          <span class="btn-icon">🎰</span> Acceder a mi cuenta
+        </button>
+        
+        <div id="msg" class="message-box"></div>
+        
+        <div class="login-footer">
+          <p class="register-text">¿No tienes una cuenta?</p>
+          <button type="button" onclick="window.location.href='registro.html'" class="btn-register">
+            <span class="btn-icon">✍️</span> Crear cuenta nueva
+          </button>
+          
+          <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-text">o</span>
+            <span class="divider-line"></span>
+          </div>
+          
+          <button type="button" onclick="window.location.href='juegos.html'" class="btn-guest">
+            <span class="btn-icon">🎮</span> Continuar como invitado
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="login-footer">
+    <div class="security-badges">
+      <span class="badge">🔐 256-bit SSL</span>
+      <span class="badge">🛡️ Protección de datos</span>
+      <span class="badge">👁️‍🗨️ +18</span>
+    </div>
+    <p class="copyright">© 2023 Casino Royale. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Efecto hover para botones
+      const buttons = document.querySelectorAll('.btn-login, .btn-register, .btn-guest');
+      buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-3px)';
+        });
+        button.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+      
+      // Manejo del formulario
+      document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const submitBtn = document.getElementById('login-btn');
+        const messageBox = document.getElementById('msg');
+        
+        submitBtn.innerHTML = '<span class="btn-icon">⏳</span> Verificando...';
+        submitBtn.disabled = true;
+        messageBox.textContent = '';
+        messageBox.className = 'message-box';
+        
+        fetch(this.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(async response => {
+          const contentType = response.headers.get('content-type');
+          if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            throw new Error(text || 'Respuesta no válida del servidor');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            messageBox.textContent = '¡Acceso concedido! Redirigiendo...';
+            messageBox.className = 'message-box success';
+            // Guardar usuario en localStorage
+            if (data.usuario) {
+              localStorage.setItem('usuario', data.usuario);
+            }
+            setTimeout(() => {
+              window.location.href = data.redirect || '../public/index.html';
+            }, 1500);
+          } else {
+            throw new Error(data.error || 'Error en el inicio de sesión');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          messageBox.textContent = error.message.replace(/<[^>]*>?/gm, '') || 'Error al iniciar sesión';
+          messageBox.className = 'message-box error';
+        })
+        .finally(() => {
+          submitBtn.innerHTML = '<span class="btn-icon">🎰</span> Acceder a mi cuenta';
+          submitBtn.disabled = false;
+        });
+      });
+    });
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('login-form');
+    
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const submitBtn = document.getElementById('login-btn');
+      const messageBox = document.getElementById('msg');
+      
+      // Cambiar estado del botón
+      submitBtn.innerHTML = '<span class="btn-icon">⏳</span> Verificando...';
+      submitBtn.disabled = true;
+      messageBox.textContent = '';
+      messageBox.className = 'message-box';
+      
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(async response => {
+        // Verificar si la respuesta es JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await response.text();
+          throw new Error(text || 'Respuesta no válida del servidor');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          // Mostrar mensaje de éxito
+          messageBox.textContent = data.message;
+          messageBox.className = 'message-box success';
+          
+          // Guardar usuario en localStorage si es necesario
+          if (data.usuario) {
+            localStorage.setItem('usuario', data.usuario);
+          }
+          
+          // Redirigir después de breve retraso
+          setTimeout(() => {
+            window.location.href = data.redirect || '../public/index.html';
+          }, 1500);
+        } else {
+          throw new Error(data.message || 'Error en el inicio de sesión');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        messageBox.textContent = error.message;
+        messageBox.className = 'message-box error';
+      })
+      .finally(() => {
+        // Restaurar botón
+        submitBtn.innerHTML = '<span class="btn-icon">🎰</span> Acceder a mi cuenta';
+        submitBtn.disabled = false;
+      });
+    });
+  });
+</script>
+</body>
+  ...
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('login-form');
+      
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const submitBtn = document.getElementById('login-btn');
+        const messageBox = document.getElementById('msg');
+        
+        submitBtn.innerHTML = '<span class="btn-icon">⏳</span> Verificando...';
+        submitBtn.disabled = true;
+        messageBox.textContent = '';
+        messageBox.className = 'message-box';
+        
+        fetch(this.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(async response => {
+          const contentType = response.headers.get('content-type');
+          if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            throw new Error(text || 'Respuesta no válida del servidor');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            messageBox.textContent = data.message;
+            messageBox.className = 'message-box success';
+            
+            if (data.usuario) {
+              localStorage.setItem('usuario', data.usuario);
+            }
+            
+            setTimeout(() => {
+              window.location.href = data.redirect || '../public/juegos.html';
+            }, 1500);
+          } else {
+            throw new Error(data.message || 'Error en el inicio de sesión');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          messageBox.textContent = error.message.replace(/<[^>]*>?/gm, '') || 'Error al iniciar sesión';
+          messageBox.className = 'message-box error';
+        })
+        .finally(() => {
+          submitBtn.innerHTML = '<span class="btn-icon">🎰</span> Acceder a mi cuenta';
+          submitBtn.disabled = false;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+</html>

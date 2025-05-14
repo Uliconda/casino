@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Juegos premium de casino online en Casino Royale - Bingo, Tragaperras y más">
+  <title>Casino Royale - Juegos Premium</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body class="main-page">
+  <!-- Fondo animado -->
+  <div class="background-animation">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <header class="main-header">
+    <div class="logo-container">
+      <span class="logo-icon">♠️</span>
+      <h1 class="logo-text">CASINO <span>ROYALE</span></h1>
+      <span class="logo-icon">♥️</span>
+    </div>
+    <div id="usuario-info" class="user-panel">
+      <p class="welcome-msg">Bienvenido, <span id="nombre-usuario" class="username">Jugador</span></p>
+      <button onclick="window.location.href='login.html'" class="btn-logout">
+        <span class="btn-icon">🚪</span> Cerrar sesión
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <!-- Sección de recomendaciones -->
+    <section class="ia-recommendations animate__animated animate__fadeIn">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-icon">🤖</span> Recomendaciones IA
+        </h2>
+        <div class="selector-categoria">
+          <label for="categoria" class="selector-label">
+            <span class="selector-icon">🎯</span> Categoría:
+          </label>
+          <select id="categoria" onchange="consultarIA()" class="select-custom">
+            <option value="azar">🎲 Azar</option>
+            <option value="estrategia">🧠 Estrategia</option>
+            <option value="cartas">🃏 Cartas</option>
+          </select>
+        </div>
+      </div>
+      <div id="sugerencias" class="recommendations-container"></div>
+    </section>
+
+    <!-- Sección de juegos destacados -->
+    <section class="featured-games animate__animated animate__fadeIn animate__delay-1s">
+      <h2 class="section-title">
+        <span class="title-icon">⭐</span> Juegos Destacados
+      </h2>
+      <div class="games-grid">
+        <div class="game-card" onclick="window.location.href='bingo.html'">
+          <div class="game-icon">🎯</div>
+          <h3 class="game-title">Bingo Royale</h3>
+          <p class="game-desc">Gana con líneas y cartones llenos</p>
+          <button class="btn-play">Jugar ahora</button>
+        </div>
+        
+        <div class="game-card" onclick="window.location.href='tragaperras.html'">
+          <div class="game-icon">🎰</div>
+          <h3 class="game-title">Mega Slots</h3>
+          <p class="game-desc">Giros gratis y jackpots progresivos</p>
+          <button class="btn-play">Jugar ahora</button>
+        </div>
+        
+        <div class="game-card coming-soon">
+          <div class="game-icon">♠️</div>
+          <h3 class="game-title">Blackjack VIP</h3>
+          <p class="game-desc">Próximamente - Mesa exclusiva</p>
+          <span class="badge">Próximamente</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de multimedia -->
+    <section class="media-section">
+      <div class="media-container">
+        <div class="video-highlight">
+          <h3 class="media-title">
+            <span class="media-icon">🎥</span> Video Destacado
+          </h3>
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/_6MMcabFGIA" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    loading="lazy"></iframe>
+          </div>
+        </div>
+        
+        <div class="news-feed">
+          <h3 class="media-title">
+            <span class="media-icon">📰</span> Últimas Noticias
+          </h3>
+          <div class="news-item">
+            <div class="news-badge">Nuevo</div>
+            <h4 class="news-title">Torneo de Blackjack este viernes</h4>
+            <p class="news-excerpt">Participa en nuestro torneo exclusivo con premios de hasta $10,000</p>
+            <div class="news-meta">
+              <span class="news-date">15 Mayo 2023</span>
+              <span class="news-category">Torneos</span>
+            </div>
+          </div>
+          
+          <div class="news-item">
+            <div class="news-badge highlight">Destacado</div>
+            <h4 class="news-title">Nuevas máquinas tragamonedas</h4>
+            <p class="news-excerpt">Hemos añadido 10 nuevas máquinas con temática de aventuras</p>
+            <div class="news-meta">
+              <span class="news-date">10 Mayo 2023</span>
+              <span class="news-category">Novedades</span>
+            </div>
+          </div>
+          
+          <div class="news-item">
+            <h4 class="news-title">Guía estratégica: Texas Hold'em</h4>
+            <p class="news-excerpt">Aprende las mejores estrategias para dominar el póker</p>
+            <div class="news-meta">
+              <span class="news-date">5 Mayo 2023</span>
+              <span class="news-category">Guías</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de promociones -->
+    <section class="promotions-section">
+      <h2 class="section-title">
+        <span class="title-icon">🎁</span> Promociones Exclusivas
+      </h2>
+      <div class="promotions-carousel">
+        <div class="promo-card gold">
+          <div class="promo-badge">TOP</div>
+          <img src="../assets/Girl-casino.jpg" alt="Bonos de bienvenida" loading="lazy">
+          <div class="promo-content">
+            <h3 class="promo-title">Bonos de Bienvenida</h3>
+            <p class="promo-desc">Hasta $500 en bonos + 50 giros gratis</p>
+            <button class="btn-promo">Reclamar ahora</button>
+          </div>
+        </div>
+        
+        <div class="promo-card silver">
+          <img src="../assets/girl2-casino.jpg" alt="Torneos semanales" loading="lazy">
+          <div class="promo-content">
+            <h3 class="promo-title">Torneos Semanales</h3>
+            <p class="promo-desc">$20,000 en premios cada semana</p>
+            <button class="btn-promo">Participar</button>
+          </div>
+        </div>
+        
+        <div class="promo-card bronze">
+          <img src="../assets/girl3-casino.jpg" alt="Premios en efectivo" loading="lazy">
+          <div class="promo-content">
+            <h3 class="promo-title">Premios en Efectivo</h3>
+            <p class="promo-desc">Retiros instantáneos 24/7</p>
+            <button class="btn-promo">Más info</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4 class="footer-title">Casino Royale</h4>
+        <p class="footer-text">La experiencia de juego más exclusiva en línea desde 2023.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4 class="footer-title">Juegos</h4>
+        <ul class="footer-links">
+          <li><a href="bingo.html">Bingo</a></li>
+          <li><a href="tragaperras.html">Tragaperras</a></li>
+          <li><a href="#">Blackjack</a></li>
+          <li><a href="#">Ruleta</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4 class="footer-title">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Juego responsable</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4 class="footer-title">Contacto</h4>
+        <div class="social-icons">
+          <span class="social-icon">📱</span>
+          <span class="social-icon">💬</span>
+          <span class="social-icon">📧</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p class="copyright">© 2023 Casino Royale. Todos los derechos reservados.</p>
+      <p class="disclaimer">+18 | Juego responsable | Certificado RNG</p>
+      <div class="payment-methods">
+        <span class="payment-icon">💳</span>
+        <span class="payment-icon">📱</span>
+        <span class="payment-icon">🏦</span>
+        <span class="payment-icon">🔒</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/juegos.js"></script>
+  <script>
+    // Efectos interactivos
+    document.addEventListener('DOMContentLoaded', function() {
+      // Efecto hover para las cartas de juego
+      const gameCards = document.querySelectorAll('.game-card');
+      gameCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-10px)';
+          this.style.boxShadow = '0 15px 30px rgba(255, 204, 0, 0.3)';
+        });
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+        });
+      });
+      
+      // Efecto hover para promociones
+      const promoCards = document.querySelectorAll('.promo-card');
+      promoCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.querySelector('img').style.transform = 'scale(1.05)';
+        });
+        card.addEventListener('mouseleave', function() {
+          this.querySelector('img').style.transform = 'scale(1)';
+        });
+      });
+      
+      // Actualizar nombre de usuario si está logueado
+      if(localStorage.getItem('usuario')) {
+        document.getElementById('nombre-usuario').textContent = localStorage.getItem('usuario');
+      }
+    });
+    
+    function consultarIA() {
+      // Simulación de recomendaciones IA
+      const categoria = document.getElementById('categoria').value;
+      const contenedor = document.getElementById('sugerencias');
+      
+      const recomendaciones = {
+        azar: [
+          { nombre: "Ruleta VIP", desc: "Giros con probabilidades aumentadas", icon: "🎡" },
+          { nombre: "Mega Slots", desc: "Jackpot progresivo $1,000,000", icon: "🎰" }
+        ],
+        estrategia: [
+          { nombre: "Blackjack Pro", desc: "Mesa de alto límite", icon: "♠️" },
+          { nombre: "Póker Texas", desc: "Torneo semanal", icon: "🃏" }
+        ],
+        cartas: [
+          { nombre: "Bacará Clásico", desc: "Modo squeeze disponible", icon: "🎴" },
+          { nombre: "Póquer 3 Cartas", desc: "Rápido y emocionante", icon: "♥️" }
+        ]
+      };
+      
+      let html = '<div class="recommendations-grid">';
+      recomendaciones[categoria].forEach(juego => {
+        html += `
+          <div class="recommendation-item">
+            <div class="recommendation-icon">${juego.icon}</div>
+            <h4>${juego.nombre}</h4>
+            <p>${juego.desc}</p>
+            <button class="btn-recommendation">Ver juego</button>
+          </div>
+        `;
+      });
+      html += '</div>';
+      
+      contenedor.innerHTML = html;
+    }
+    
+    // Cargar recomendaciones iniciales
+    window.onload = function() {
+      consultarIA();
+    };
+  </script>
+</body>
+</html>
