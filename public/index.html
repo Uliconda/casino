@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body class="welcome-page">
+
+  
   <!-- Fondo animado -->
   <div class="background-animation">
     <div class="particle"></div>
@@ -66,6 +68,21 @@
         <p>+18 | Juego responsable | <a href="#" class="terms-link">Términos y condiciones</a></p>
       </div>
     </div>
+
+    <div class="recomendaciones">
+      <h3>Recomendaciones IA</h3>
+      <div class="selector-categoria">
+        <label for="categoria">Elige una categoría:</label>
+        <select id="categoria" class="select-custom" onchange="consultarIA()">
+          <option value="azar">Azar</option>
+          <option value="estrategia">Estrategia</option>
+          <option value="cartas">Cartas</option>
+        </select>
+      </div>
+      <div id="sugerencias" class="sugerencias-container">
+        <!-- Aquí se mostrarán las recomendaciones -->
+      </div>
+    </div>
   </main>
 
   <footer class="welcome-footer">
@@ -99,74 +116,8 @@
         });
       });
     });
-
-    function consultarIA() {
-  // Simulación de recomendaciones IA
-  const categoria = document.getElementById('categoria').value;
-  const contenedor = document.getElementById('sugerencias');
-  
-  const recomendaciones = {
-    azar: [
-      { 
-        nombre: "Ruleta VIP", 
-        desc: "Giros con probabilidades aumentadas", 
-        icon: "🎡",
-        id: "ruleta-vip"
-      },
-      { 
-        nombre: "Mega Slots", 
-        desc: "Jackpot progresivo $1,000,000", 
-        icon: "🎰",
-        id: "mega-slots"
-      }
-    ],
-    estrategia: [
-      { 
-        nombre: "Blackjack Pro", 
-        desc: "Mesa de alto límite", 
-        icon: "♠️",
-        id: "blackjack-pro"
-      },
-      { 
-        nombre: "Póker Texas", 
-        desc: "Torneo semanal", 
-        icon: "🃏",
-        id: "poker-texas"
-      }
-    ],
-    cartas: [
-      { 
-        nombre: "Bacará Clásico", 
-        desc: "Modo squeeze disponible", 
-        icon: "🎴",
-        id: "bacara-clasico"
-      },
-      { 
-        nombre: "Póquer 3 Cartas", 
-        desc: "Rápido y emocionante", 
-        icon: "♥️",
-        id: "poker-3-cartas"
-      }
-    ]
-  };
-  
-  let html = '<div class="recommendations-grid">';
-  recomendaciones[categoria].forEach(juego => {
-    html += `
-      <div class="recommendation-item">
-        <div class="recommendation-icon">${juego.icon}</div>
-        <h4>${juego.nombre}</h4>
-        <p>${juego.desc}</p>
-        <button class="btn-recommendation" onclick="window.location.href='juego-detalle.html?id=${juego.id}'">
-          Ver juego
-        </button>
-      </div>
-    `;
-  });
-  html += '</div>';
-  
-  contenedor.innerHTML = html;
-}
+    
   </script>
+  <script src="../js/recomendaciones.js"></script>
 </body>
 </html>

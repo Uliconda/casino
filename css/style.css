@@ -99,13 +99,14 @@ body {
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: var(--shadow);
+  margin-top: 2rem;
 }
 
 .selector-categoria {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 }
 
 .select-custom {
@@ -133,7 +134,6 @@ body {
   margin-top: 1.5rem;
   padding: 1rem;
   background-color: rgba(255, 204, 0, 0.1);
-  border-radius: 8px;
   border-left: 4px solid var(--color-primary);
 }
 
@@ -2334,3 +2334,4 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
 }
+
