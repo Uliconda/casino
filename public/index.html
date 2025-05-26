@@ -13,7 +13,6 @@
 </head>
 <body class="welcome-page">
 
-  
   <!-- Fondo animado -->
   <div class="background-animation">
     <div class="particle"></div>
@@ -23,6 +22,7 @@
     <div class="particle"></div>
   </div>
 
+  <!-- Encabezado -->
   <header class="welcome-header">
     <div class="logo-container">
       <span class="logo-icon">♠️</span>
@@ -32,11 +32,14 @@
     <p class="tagline">Donde los sueños se convierten en realidad</p>
   </header>
 
+  <!-- Contenido principal -->
   <main class="welcome-main">
     <div class="welcome-card animate__animated animate__fadeInUp">
+      <!-- Título de bienvenida -->
       <h2 class="welcome-title">¡Bienvenido!</h2>
       <p class="welcome-message">Experimenta la emoción de nuestros juegos exclusivos y la oportunidad de ganar premios extraordinarios.</p>
       
+      <!-- Destacados -->
       <div class="highlights">
         <div class="highlight-item">
           <span class="highlight-icon">💰</span>
@@ -52,6 +55,7 @@
         </div>
       </div>
       
+      <!-- Botones de acción -->
       <div class="welcome-buttons">
         <button onclick="window.location.href='login.html'" class="btn-welcome btn-login">
           <span class="btn-icon">🔑</span> Iniciar sesión
@@ -64,27 +68,14 @@
         </button>
       </div>
       
+      <!-- Aviso legal -->
       <div class="disclaimer">
         <p>+18 | Juego responsable | <a href="#" class="terms-link">Términos y condiciones</a></p>
       </div>
     </div>
-
-    <div class="recomendaciones">
-      <h3>Recomendaciones IA</h3>
-      <div class="selector-categoria">
-        <label for="categoria">Elige una categoría:</label>
-        <select id="categoria" class="select-custom" onchange="consultarIA()">
-          <option value="azar">Azar</option>
-          <option value="estrategia">Estrategia</option>
-          <option value="cartas">Cartas</option>
-        </select>
-      </div>
-      <div id="sugerencias" class="sugerencias-container">
-        <!-- Aquí se mostrarán las recomendaciones -->
-      </div>
-    </div>
   </main>
 
+  <!-- Pie de página -->
   <footer class="welcome-footer">
     <p>© 2023 Casino Royale. Todos los derechos reservados.</p>
     <div class="payment-methods">
@@ -94,6 +85,7 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
     // Efecto de escritura para el título
     document.addEventListener('DOMContentLoaded', function() {
@@ -116,8 +108,6 @@
         });
       });
     });
-    
   </script>
-  <script src="../js/recomendaciones.js"></script>
 </body>
 </html>
